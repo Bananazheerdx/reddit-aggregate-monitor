@@ -1,0 +1,44 @@
+# Copy this file to config.yml and edit before running.
+
+reddit:
+  # OAuth-only access. The client fails closed if credentials are missing.
+  oauth_required: true
+
+  # Reddit OAuth API base.
+  api_base: "https://oauth.reddit.com"
+  token_url: "https://www.reddit.com/api/v1/access_token"
+
+  # OAuth credentials are read from environment variables only.
+  client_id_env: "REDDIT_CLIENT_ID"
+  client_secret_env: "REDDIT_CLIENT_SECRET"
+
+  # Use a descriptive User-Agent that identifies the app and operator.
+  # Example format: "script:com.example.app-name:v0.1.0 (by /u/example_user)"
+  user_agent: "script:com.example.reddit-aggregate-monitor:v0.1.0 (by /u/example_user)"
+
+  # Low-volume request settings.
+  request_limit_per_subreddit: 25
+  requests_per_second: 0.5
+  timeout_seconds: 20
+  max_retries: 1
+
+subreddits:
+  # Fixed allowlist. The client does not discover or crawl subreddits automatically.
+  - ETFs
+  - investing
+  - finance
+
+storage:
+  data_dir: "data"
+  run_dir: "data/runs"
+  daily_aggregate_dir: "data/aggregate/daily_counts"
+  debug_cache_dir: "data/raw_cache/debug_metadata"
+
+retention:
+  # Temporary debug metadata only. No raw Reddit response bodies are written by this app.
+  debug_cache_hours: 24
+
+# Disabled by default. If enabled, only request metadata is cached temporarily.
+# The cache does not store post titles, selftext, authors, comments, URLs, permalinks, or user IDs.
+debug_cache:
+  enabled: false

@@ -1,0 +1,18 @@
+# Local configuration and secrets
+config.yml
+.env
+*.env
+
+# Local data outputs
+data/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# OS/editor
+.DS_Store
+.vscode/
+.idea/
